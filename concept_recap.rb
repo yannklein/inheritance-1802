@@ -15,3 +15,8 @@ class Car #=> Car is a {Class}
   end
 end
 
+
+ferrari = Car.new("red") #=> ferrari is an {Instance} of car
+ferrari.start_engine #=> we can call start_engine on the instance ferrari because it is an {Instance Method}
+
+Car.parts #=> we can only call parts on the class Car because it is an {Class Method}
