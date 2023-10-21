@@ -1,34 +1,40 @@
-require_relative 'chef'
-
 class Restaurant
-  attr_reader :name, :location, :chef
+  # GETTER (reader)
+  attr_reader :name, :location #, :capacity
+  # SETTER (writer)
+  # attr_writer :capacity
+  # reader + wrtier = accessor
   attr_accessor :capacity
-
-  # p self
-  # => Restaurant
-
-  def initialize(name, cuisine, location, capacity, chef_name)
+  def initialize(name, location, genre, capacity)
+    # instance variable, STATE
     @name = name
-    @cuisine = cuisine
     @location = location
+    @genre = genre
     @capacity = capacity
-    @chef = Chef.new(chef_name, self)
     @clients = []
+    p "Self in the initilialize method is the instance itself: #{self}"
   end
 
+  # BEHAVIOR
   def open?
-    Time.now.hour >= 18 && Time.now.hour <= 22
+    now = Time.now.hour
+    now > 20 && now < 24
   end
 
   def closed?
+    p "Self in the closed? method is the instance itself: #{self}"
     !open?
   end
 
-  def book(new_client)
-    @clients << new_client
+  def book(client)
+    @clients << client
   end
-  
-  def self.categories # => Restaurant.categories
-    ["italian", "japanese", "fast food"]
+
+  p "Self is the class: #{self}."
+
+  # CLASS METHOD
+  def self.categories
+    p "this variable: #{@clients}  is not defined"
+    ["french", "american", "chinese", "japanese"]
   end
 end

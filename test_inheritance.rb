@@ -1,24 +1,30 @@
-require_relative 'fast_food_restaurant'
-require_relative 'fancy_restaurant'
-require_relative 'restaurant'
-require_relative 'chef'
 require 'json'
+require_relative "fancy_restaurant"
+require_relative "fast_food_restaurant"
+require_relative "restaurant"
+require_relative "chef"
 
-mcdonalds = FastFoodRestaurant.new("Mc Donald's", "Fast Food", "Meguro", 50, "Danielle", 5)
-p mcdonalds
+# locale = FancyRestaurant.new("Locale", "Meguro", "farm-to-table", 10)
+# p locale
+bk = FastFoodRestaurant.new("Burger King", "Shibuya", "american", 50, 10, "Rashad")
+# p bk
 
-p mcdonalds.open?
-p mcdonalds.closed?
+puts "The restaurant #{bk.name} is in #{bk.location} (capacity: #{bk.capacity} people)."
+puts "#{bk.name} is #{bk.closed? ? "closed" : "opened"}."
 
-olive_garden = FancyRestaurant.new("Olive garden", "Italian", "Tampa, Florida", 20, "Danielle", 5)
-p olive_garden
-p olive_garden.chef
 
-p olive_garden.chef.restaurant
+bk.book("Taka")
+bk.book("Raecine")
+bk.book("Jane")
+p bk
 
-p Time.class
 p Time.now
 p JSON.parse("{}")
 
 p Restaurant.categories
-# => ["italian", "japanese", "fast food"]
+
+# chef = Chef.new("Rashad", bk)
+# p chef
+
+p bk.chef
+p bk.chef.restaurant

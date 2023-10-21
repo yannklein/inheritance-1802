@@ -1,17 +1,15 @@
-require_relative 'restaurant'
+require_relative "restaurant"
 
-mcdonalds = Restaurant.new("Mc Donald's", "Fast Food", "Meguro", 50)
-# p mcdonalds
+le_cantina = Restaurant.new("Le Cantina", "Tokyo", "french", 12)
+# p le_cantina
 
-puts "#{mcdonalds.name} is in #{mcdonalds.location} and can hold #{mcdonalds.capacity} people"
-mcdonalds.capacity += 100
-puts "#{mcdonalds.name} is in #{mcdonalds.location} and can hold #{mcdonalds.capacity} people"
+puts "The restaurant #{le_cantina.name} is in #{le_cantina.location} (capacity: #{le_cantina.capacity} people)."
+le_cantina.capacity += 10
+puts "The restaurant #{le_cantina.name} is in #{le_cantina.location} (capacity: #{le_cantina.capacity} people)."
 
-puts mcdonalds.open? 
-puts mcdonalds.closed? 
+puts "#{le_cantina.name} is #{le_cantina.closed? ? "closed" : "opened"}."
 
-p mcdonalds
-mcdonalds.book("Jeremy")
-mcdonalds.book("Yvonne")
-mcdonalds.book("Tanner")
-p mcdonalds
+le_cantina.book("Taka")
+le_cantina.book("Raecine")
+le_cantina.book("Jane")
+p le_cantina
