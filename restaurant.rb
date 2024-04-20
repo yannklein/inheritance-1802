@@ -1,40 +1,53 @@
-class Restaurant
-  # GETTER (reader)
-  attr_reader :name, :location #, :capacity
-  # SETTER (writer)
-  # attr_writer :capacity
-  # reader + wrtier = accessor
-  attr_accessor :capacity
-  def initialize(name, location, genre, capacity)
-    # instance variable, STATE
-    @name = name
-    @location = location
-    @genre = genre
-    @capacity = capacity
-    @clients = []
-    p "Self in the initilialize method is the instance itself: #{self}"
-  end
+require_relative 'chef'
 
-  # BEHAVIOR
-  def open?
-    now = Time.now.hour
-    now > 20 && now < 24
+class Restaurant
+  attr_reader :name, :city, :category, :clients
+  # attr_reader + attr_writer = attr_accessor
+  attr_accessor :capacity
+
+  p "Self inside a class is: #{self}"
+
+  def initialize(name, city, capacity, category, chef_name)
+    # instance variables (STATES)
+    @name = name
+    @city = city
+    @capacity = capacity
+    @category = category
+    @clients = []
+    # self here represents the instance of Restaurant
+    @chef = Chef.new(chef_name, self)
   end
 
   def closed?
-    p "Self in the closed? method is the instance itself: #{self}"
     !open?
   end
 
-  def book(client)
-    @clients << client
+  def open?
+    p "Self inside an instance method is: #{self}"
+    (Time.now.hour >= 17 && Time.now.hour <= 21)
   end
 
-  p "Self is the class: #{self}."
+  def book(new_client)
+    @clients << new_client
+  end
 
-  # CLASS METHOD
+  def print_clients
+    puts @clients
+  end
+
   def self.categories
-    p "this variable: #{@clients}  is not defined"
-    ["french", "american", "chinese", "japanese"]
+    ["italian", "chinese", "peruvian"]
+    # @variables don't work here!
+  end
+
+  def self.show_names(restos)
+    restos.each do |resto|
+      # resto is ann instance of Restaurant
+      puts resto.name
+    end
+  end
+
+  def chef
+    @chef
   end
 end

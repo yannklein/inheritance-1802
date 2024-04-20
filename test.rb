@@ -1,15 +1,44 @@
-require_relative "restaurant"
+require_relative 'restaurant'
+require_relative 'chef'
+require 'json'
 
-le_cantina = Restaurant.new("Le Cantina", "Tokyo", "french", 12)
-# p le_cantina
+shakeshack = Restaurant.new("Shake Shack", "Ebisu", 30, "Burger", "Martin")
+kfc = Restaurant.new("KFC", "Meguro", 10, "Burger", "Rei")
+restaurants = [shakeshack, kfc]
+# restaurants is an array of instances of Restaurant
 
-puts "The restaurant #{le_cantina.name} is in #{le_cantina.location} (capacity: #{le_cantina.capacity} people)."
-le_cantina.capacity += 10
-puts "The restaurant #{le_cantina.name} is in #{le_cantina.location} (capacity: #{le_cantina.capacity} people)."
+# puts "#{shakeshack.name} is in #{shakeshack.city}"
 
-puts "#{le_cantina.name} is #{le_cantina.closed? ? "closed" : "opened"}."
+puts "#{shakeshack.name} can hosts up to #{shakeshack.capacity} people."
 
-le_cantina.book("Taka")
-le_cantina.book("Raecine")
-le_cantina.book("Jane")
-p le_cantina
+shakeshack.capacity += 10 
+
+# puts "#{shakeshack.name} can hosts up to #{shakeshack.capacity} people."
+
+# puts shakeshack.open?
+# puts shakeshack.closed?
+
+# puts "#{shakeshack.name} is #{shakeshack.open? ? "open" : "closed"} now."
+
+shakeshack.book("Rachel")
+shakeshack.book("Javier")
+shakeshack.book("Pedro")
+
+# p shakeshack.clients
+
+# p Restaurant.categories
+
+# Restaurant.show_names(restaurants)
+
+# p Time.now
+# p JSON.parse("{}")
+
+# martin = Chef.new("Martin", shakeshack)
+
+# p martin
+# p martin.restaurant
+
+p shakeshack.chef
+
+p shakeshack.chef.name
+p kfc.chef.name

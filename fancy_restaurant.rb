@@ -1,25 +1,17 @@
-class FancyRestaurant
-  attr_reader :name, :location
+require_relative 'restaurant'
+class FancyRestaurant < Restaurant
+  attr_reader :name, :city, :category, :clients
   attr_accessor :capacity
-  def initialize(name, location, genre, capacity, stars)
-    @name = name
-    @location = location
-    @genre = genre
-    @capacity = capacity
-    @clients = []
+  def initialize(name, city, capacity, category, stars)
     @stars = stars
+    @name = name
+    @city = city
+    @capacity = capacity
+    @category = category
+    @clients = []
   end
 
-  def open?
-    now = Time.now.hour
-    now > 20 && now < 24
-  end
-
-  def closed?
-    !open?
-  end
-
-  def book(client)
-    @clients << client
+  def print_clients
+    puts "Access restricted!"
   end
 end

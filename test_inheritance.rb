@@ -1,30 +1,25 @@
-require 'json'
-require_relative "fancy_restaurant"
-require_relative "fast_food_restaurant"
-require_relative "restaurant"
-require_relative "chef"
+require_relative 'fast_food_restaurant'
+require_relative 'fancy_restaurant'
 
-# locale = FancyRestaurant.new("Locale", "Meguro", "farm-to-table", 10)
-# p locale
-bk = FastFoodRestaurant.new("Burger King", "Shibuya", "american", 50, 10, "Rashad")
-# p bk
+mcdo = FastFoodRestaurant.new("Mc Do", "Meguro", 100, "burger", 10)
 
-puts "The restaurant #{bk.name} is in #{bk.location} (capacity: #{bk.capacity} people)."
-puts "#{bk.name} is #{bk.closed? ? "closed" : "opened"}."
+puts "#{mcdo.name} is in #{mcdo.city}"
+
+puts "#{mcdo.name} can host up to #{mcdo.capacity} people."
+
+puts "#{mcdo.name} is #{mcdo.open? ? "open" : "closed"} now."
 
 
-bk.book("Taka")
-bk.book("Raecine")
-bk.book("Jane")
-p bk
+land = FancyRestaurant.new("LAND", "Meguro", 10, "curry", 2)
 
-p Time.now
-p JSON.parse("{}")
+puts "#{land.name} is in #{land.city}"
 
-p Restaurant.categories
+puts "#{land.name} can host up to #{land.capacity} people."
 
-# chef = Chef.new("Rashad", bk)
-# p chef
+mcdo.book("Senie")
+mcdo.book("Rachel")
+land.book("Dianna")
+land.book("Yoosun")
 
-p bk.chef
-p bk.chef.restaurant
+mcdo.print_clients
+land.print_clients
