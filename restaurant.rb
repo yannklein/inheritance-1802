@@ -1,53 +1,47 @@
-require_relative 'chef'
+require_relative "chef"
 
 class Restaurant
-  attr_reader :name, :city, :category, :clients
-  # attr_reader + attr_writer = attr_accessor
-  attr_accessor :capacity
-
-  p "Self inside a class is: #{self}"
-
-  def initialize(name, city, capacity, category, chef_name)
-    # instance variables (STATES)
+  attr_reader :clients, :name, :location, :chef
+  attr_accessor :capacity # R + W
+  def initialize(name, location, capacity, category, chef_name)
+    # STATES
     @name = name
-    @city = city
+    @location = location
     @capacity = capacity
     @category = category
     @clients = []
-    # self here represents the instance of Restaurant
-    @chef = Chef.new(chef_name, self)
+    @chef = Chef.new(chef_name, self) # instance of chef
+
+    # self is cindys (the instance of Restaurant)
+    # p "self in an instance method:", self
   end
 
-  def closed?
+  # BEHAVIOR
+  def open?
+    # self is cindys (the instance of Restaurant)
+    # p "self in an instance method:", self
+    evening = Time.now.hour >= 18 && Time.now.hour <= 22
+
+    return evening
+  end
+
+  def close?
     !open?
   end
 
-  def open?
-    p "Self inside an instance method is: #{self}"
-    (Time.now.hour >= 17 && Time.now.hour <= 21)
+  def book(client_name)
+    @clients << client_name
   end
 
-  def book(new_client)
-    @clients << new_client
+  def clients_list
+    @clients
   end
 
-  def print_clients
-    puts @clients
-  end
+  # self is Restaurant
+  # p "self in a class:", self
 
   def self.categories
-    ["italian", "chinese", "peruvian"]
-    # @variables don't work here!
-  end
-
-  def self.show_names(restos)
-    restos.each do |resto|
-      # resto is ann instance of Restaurant
-      puts resto.name
-    end
-  end
-
-  def chef
-    @chef
+    # p "self in a class method:", self
+    ["Dessert", "Breakfast", "Drinks"]
   end
 end

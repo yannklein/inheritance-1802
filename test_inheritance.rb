@@ -1,25 +1,32 @@
-require_relative 'fast_food_restaurant'
-require_relative 'fancy_restaurant'
+require_relative "fancy_restaurant"
+require_relative "restaurant"
+require_relative "fast_food_restaurant"
+require "json"
 
-mcdo = FastFoodRestaurant.new("Mc Do", "Meguro", 100, "burger", 10)
+fancy_cindys = FancyRestaurant.new("Cindy's table", "Yokohama", 10, "Dessert", 3)
 
-puts "#{mcdo.name} is in #{mcdo.city}"
+p fancy_cindys.name
+p fancy_cindys.open?
 
-puts "#{mcdo.name} can host up to #{mcdo.capacity} people."
+fancy_cindys.book("Sarah")
+fancy_cindys.book("Jasmine")
+fancy_cindys.book("Allan")
 
-puts "#{mcdo.name} is #{mcdo.open? ? "open" : "closed"} now."
+p fancy_cindys.clients_list
 
+wendys = FastFoodRestaurant.new("Wendy's", "Shibuya", 40, "Burger", 10)
 
-land = FancyRestaurant.new("LAND", "Meguro", 10, "curry", 2)
+p wendys.name
+p wendys.open?
 
-puts "#{land.name} is in #{land.city}"
+wendys.book("Rayz")
+wendys.book("Alex")
 
-puts "#{land.name} can host up to #{land.capacity} people."
+p wendys.clients_list
 
-mcdo.book("Senie")
-mcdo.book("Rachel")
-land.book("Dianna")
-land.book("Yoosun")
+# Class methods
+p Time.now
+p JSON.parse("{}")
 
-mcdo.print_clients
-land.print_clients
+p Restaurant.categories
+p FancyRestaurant.categories

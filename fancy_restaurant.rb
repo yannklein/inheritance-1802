@@ -1,17 +1,12 @@
-require_relative 'restaurant'
+require_relative "restaurant"
+
 class FancyRestaurant < Restaurant
-  attr_reader :name, :city, :category, :clients
-  attr_accessor :capacity
-  def initialize(name, city, capacity, category, stars)
+  def initialize(name, location, capacity, category, stars)
+    super(name, location, capacity, category)
     @stars = stars
-    @name = name
-    @city = city
-    @capacity = capacity
-    @category = category
-    @clients = []
   end
 
-  def print_clients
-    puts "Access restricted!"
+  def clients_list
+    "Sorry, private info!"
   end
 end
